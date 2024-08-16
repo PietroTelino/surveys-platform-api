@@ -1,0 +1,75 @@
+#Testes de Requisição Local
+
+### Rotas do Usuário
+### Criar Usuário
+POST http://localhost:3333/users
+Content-type: application/json
+
+{
+    "email": "usuario.novo03@email.com",
+    "password": "123456"
+}
+
+### Login
+POST http://localhost:3333/login
+Content-type: application/json
+
+{
+    "email": "usuario.novo01@email.com",
+    "password": "123456"
+}
+
+### Token Login
+POST http://localhost:3333/token-login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM1NjU2MTMsImV4cCI6MTcyMzY1MjAxM30.4_KYouU2N-ZewW1IUaRYWhqkceEEpJ4UD5K2-aCvKQ4
+
+### Logout
+POST http://localhost:3333/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM1NTU2NDEsImV4cCI6MTcyMzY0MjA0MX0.ZP4PdO_cE9oOwsMqnTumedupSMzqblEfRxCWElexiHQ
+
+### Rotas das Enquetes
+### Listar todas as enquetes
+GET http://localhost:3333/surveys
+
+### Abrir enquete específica
+GET http://localhost:3333/survey/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM0NzE4NDQsImV4cCI6MTcyMzU1ODI0NH0.7fExsJFkwuKcpYII8B44R7x9p_MR0FMubk04JiA05p4
+
+### Listar minhas enquetes
+GET http://localhost:3333/my-surveys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM3NTA0MzAsImV4cCI6MTcyMzgzNjgzMH0.99E_T1wLHmkkDkRRknYIIsx2mf1ZKkUiGzP8MwWaA9E
+
+### Listar todas as enquetes que o usuário votou
+GET http://localhost:3333/my-votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM3NTA0MzAsImV4cCI6MTcyMzgzNjgzMH0.99E_T1wLHmkkDkRRknYIIsx2mf1ZKkUiGzP8MwWaA9E
+
+### Listar minhas enquetes filtrando
+GET http://localhost:3333/my-surveys?search=01
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiMGQ5ZTU5LWEzYjMtNDllOS1iMTY1LWU2MGE0OWQ0ZWI0ZCIsImVtYWlsIjoidXN1YXJpby5ub3ZvMDFAZW1haWwuY29tIiwiaWF0IjoxNzIzMjMzMzAzLCJleHAiOjE3MjMzMTk3MDN9.ArE_LxZSnC0gdzMV4uC8CKkiE9xhwjRBv1-nPfXE9rI
+
+
+### Criar uma enquete
+POST http://localhost:3333/survey
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM0NzE4NDQsImV4cCI6MTcyMzU1ODI0NH0.7fExsJFkwuKcpYII8B44R7x9p_MR0FMubk04JiA05p4
+
+{
+    "title": "Título da Enquete 03",
+    "description": "Descrição da Enquete 03",
+    "options": [
+        {
+            "title": "Título da opção 01 pra enquete 03"
+        },
+        {
+            "title": "Título da opção 02 pra enquete 03"
+        },
+        {
+            "title": "Título da opção 03 pra enquete 03"
+        }
+    ]
+}
+
+### Votar em uma das opções da enquete
+POST http://localhost:3333/vote/survey/1/option/2
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c3VhcmlvLm5vdm8wMUBlbWFpbC5jb20iLCJpYXQiOjE3MjM0NzE4NDQsImV4cCI6MTcyMzU1ODI0NH0.7fExsJFkwuKcpYII8B44R7x9p_MR0FMubk04JiA05p4
