@@ -4,26 +4,24 @@ import userRoutes from './routes/userRoutes.js';
 import surveyRoutes from './routes/surveyRoutes.js';
 
 const allowedOrigins = [
-    'http://localhost',
-    'https://pietrotelino.github.io/surveys-platform-front/'
+    'https://surveysplatform.netlify.app'
 ];
 const app = express();
 const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
 
-// app.use(
-//     cors({
-//         origin: function (origin, callback) {
-//             if (!origin) return callback(null, true);
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (!origin) return callback(null, true);
 
-//             if (allowedOrigins.indexOf(origin) === -1) {
-//                 return callback(new Error(msg), false);
-//             }
+            if (allowedOrigins.indexOf(origin) === -1) {
+                return callback(new Error(msg), false);
+            }
 
-//             return callback(null, true);
-//         }
-//     })
-// );
-app.use(cors());
+            return callback(null, true);
+        }
+    })
+);
 app.use(express.json());
 app.use(userRoutes);
 app.use(surveyRoutes);
